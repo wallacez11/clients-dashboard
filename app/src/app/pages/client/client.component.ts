@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ClientService } from "../../services/client.service";
+import {MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: "app-client",
@@ -6,9 +8,19 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./client.component.scss"],
 })
 export class ClientComponent implements OnInit {
-  constructor() {}
+  dataSource : any[] = [];
+  displayedColumns= ["name"];
 
-  ngOnInit(): void {
-    // Initialization code goes here
+  constructor(private clientService: ClientService) {}
+
+  ngOnInit() {
+    this.loadClients();
+  }
+
+  loadClients() {
+    this.clientService.getAll().subscribe((data) => {
+      console.log(data)
+      this.dataSource  = data;
+    });
   }
 }

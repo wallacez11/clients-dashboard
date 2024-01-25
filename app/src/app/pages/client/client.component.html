@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>teste</p>
-</body>
-</html>
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+  
+    <ng-container matColumnDef="name">
+        <div *matHeaderCellDef>#</div>
+        <div *matCellDef="let lesson">{{lesson.name}}</div>
+    </ng-container>
+  
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    
+</mat-table>
