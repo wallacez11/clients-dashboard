@@ -14,6 +14,27 @@ app.get("/clients", (req, res) => {
   res.json(clientsData);
 });
 
+app.get("/stats", (req, res) => {
+  const clientsFilePath = path.join(__dirname, "..", "clients.mock.js");
+  const clientsData = require(clientsFilePath);
+  empreendimentos = 0
+  const totalObjects = clientsData.length;
+
+ 
+
+  clientsData.forEach((item) => {
+    const enterprises = item.enterprises || [];
+   
+      empreendimentos += enterprises.reduce((sum, enterprise) => sum + parseInt(enterprise.realties || '0', 10), 0)
+
+  });
+
+  res.json({
+    totalObjects,
+    empreendimentos,
+  });
+})
+
 app.listen(3000, () => {
   console.log(`Api running at ::3000`);
 });
