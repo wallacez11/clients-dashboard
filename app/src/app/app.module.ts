@@ -4,17 +4,18 @@ import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
-import { RouterModule } from "@angular/router";
-import { MatTableModule } from "@angular/material";
-import {MatCardModule} from '@angular/material/card';
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PagesModule } from "./pages/pages.module";
 import { NavbarModule } from "./navigation/navebar.module";
+import { MatTableModule } from "@angular/material";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { DialogComponent } from '../app/pages/dialog/dialog.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DialogComponent ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,8 +26,9 @@ import { NavbarModule } from "./navigation/navebar.module";
     NavbarModule,
     PagesModule,
     MatTableModule,
-    MatCardModule
- 
+    MatInputModule,
+    MatFormFieldModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

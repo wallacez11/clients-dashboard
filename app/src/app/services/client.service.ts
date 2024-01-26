@@ -5,20 +5,22 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class ClientService {
-  private apiUrl = "http://localhost:3000/clients";
+  private apiUrl = "http://localhost:3000";
 
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
     
-    return this.http.get<any>(`${this.apiUrl}`);
+    return this.http.get<any>(`${this.apiUrl}/clients`);
   }
 
   getById() {}
 
   getByName() {}
 
-  getGeneralTotals() {}
-
+  getGeneralTotals(): Observable<any> {
+    
+    return this.http.get<any>(`${this.apiUrl}/stats`);
+  }
   getTotalsByCompany() {}
 }

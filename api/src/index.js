@@ -18,19 +18,19 @@ app.get("/stats", (req, res) => {
   const clientsFilePath = path.join(__dirname, "..", "clients.mock.js");
   const clientsData = require(clientsFilePath);
   empreendimentos = 0
-  const totalObjects = clientsData.length;
+  const clientes = clientsData.length;
 
  
 
   clientsData.forEach((item) => {
     const enterprises = item.enterprises || [];
    
-      empreendimentos += enterprises.reduce((sum, enterprise) => sum + parseInt(enterprise.realties || '0', 10), 0)
+      empreendimentos += enterprises.length
 
   });
 
   res.json({
-    totalObjects,
+    clientes,
     empreendimentos,
   });
 })

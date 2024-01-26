@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ClientService } from "../../services/client.service";
-import { MatTableDataSource } from '@angular/material';
-import {MatCardModule} from '@angular/material/card';
+import {  MatTableDataSource } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from "../dialog/dialog.component";
+
 
 export interface clients {
   id: string;
@@ -22,37 +24,67 @@ export class TableBasicExample {
   templateUrl: "./client.component.html",
   styleUrls: ["./client.component.scss"],
 })
+
+
 export class ClientComponent implements OnInit {
-  dataSource;
+  dataSource = new MatTableDataSource<clients>([]);
+  rawData;
   displayedColumns: string[] = ['id', 'name', 'imagem', 'empreendimentos'];
+  totalClientes: number;
+  totalEmpreendimentos: number;
 
-
-  constructor(private clientService: ClientService) {}
+  constructor(private clientService: ClientService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.loadClients();
+    this.loadTotals()
+  }
+
+  openDialog(row): void {
+    
+    const client = this.rawData.find(item => item._id === row.id && item.enterprises !==null);
+    console.log(client.enterprises)
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: client.enterprises
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   loadClients() {
     this.clientService.getAll().subscribe((data) => {
-      
+      this.rawData = data
       data.forEach((item) => {
         const enterprises = item.enterprises || [];
         const convertedData: clients = {
           id: item._id || '',
           name: item.name || '',
           imagem: item.image_src || '',
-          empreendimentos: enterprises.reduce((sum, enterprise) => sum + parseInt(enterprise.realties || '0', 10), 0)
+          empreendimentos: enterprises.length
 
         };
-  
-        console.log("teste", item.name); // Example of using optional chaining
         ELEMENT_DATA.push(convertedData);
       });
       this.dataSource = new MatTableDataSource(ELEMENT_DATA)
 
     });
   }
+
+  loadTotals() {
+    this.clientService.getGeneralTotals().subscribe(
+      (total) => {
+        console.log(total)
+        this.totalClientes = total.clientes;
+        this.totalEmpreendimentos = total.empreendimentos;
+      },
+      (error) => {
+        console.error('Erro ao obter totais:', error);
+      }
+    );
+  }
+
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase()
