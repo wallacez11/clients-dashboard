@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DialogComponent } from './dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -18,6 +19,10 @@ import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialo
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class DialogModule { }
