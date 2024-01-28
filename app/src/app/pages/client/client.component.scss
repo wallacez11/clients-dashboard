@@ -1,7 +1,16 @@
-table {
-    width: 100%;
-  }
+.table-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinha os elementos horizontalmente no centro */
+  justify-content: center;
+  
+}
 
+table{
+  width: 80%;
+
+}
+  
   img {
     width: 60px;
     height: 60px;
@@ -14,9 +23,9 @@ table {
   }
   
   .totalizador {
-    font-family: 'Roboto', 'Helvetica Neue', sans-serif; /* Use a fonte desejada */
-    color: whitesmoke; /* Cor preta para o texto, tornando-o mais escuro */
-    background-color: #3f51b5; /* Defina a cor de fundo como preta (ou a cor desejada) */
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif; 
+    color: whitesmoke; 
+    background-color: #3f51b5;
     padding: 20px;
     border-radius: 8px;
     text-align: center;

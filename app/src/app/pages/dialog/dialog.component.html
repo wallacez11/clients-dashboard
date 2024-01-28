@@ -1,16 +1,16 @@
 
-<div mat-dialog-content>
+<h2 mat-dialog-title>Empreendimentos</h2>
+<mat-dialog-content class="mat-typography">
     <div *ngFor="let item of data">
-     <h1 mat-dialog-title>{{item.name}}</h1>
-      <p>Imagem: {{ item.image_src }}</p>
-      <p>Realties: {{ item.realties }}</p>
-      <!-- Adicione outros campos conforme necessário -->
-    </div>
-  <ng-template #noEnterprises>
-    <p>No enterprises available.</p>
-  </ng-template>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button cdkFocusInitial>Ok</button>
-</div>
+        <hr>
+        <h1 mat-dialog-title>{{item.name}}</h1>
+       
+         <img [src]="item.image_src" />
+         <p>Realties: {{ item.realties }}</p>
+         <!-- Adicione outros campos conforme necessário -->
+       </div>
+       <hr>
+     <ng-template #noEnterprises>
+       <p>No enterprises available.</p>
+     </ng-template>
+</mat-dialog-content>

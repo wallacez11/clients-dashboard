@@ -1,3 +1,4 @@
+<div class="table-content"> 
 <div class="totalizadores-container">
     <div class="totalizador">
       <div class="totalizador-titulo">Clientes</div>
@@ -10,14 +11,12 @@
     </div>
   </div>
 
-<div>
-    <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Ex. Mia" #input>
-      </mat-form-field>
-    
-</div>
-<div >
+
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
 <table mat-table  [dataSource]="dataSource" class="mat-elevation-z8" >
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -41,6 +40,6 @@
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="abrirModal(row)"></tr>
 </table>
 </div>

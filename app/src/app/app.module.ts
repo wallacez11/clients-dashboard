@@ -12,7 +12,7 @@ import { MatTableModule } from "@angular/material";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { DialogComponent } from '../app/pages/dialog/dialog.component';
-
+import {  MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [AppComponent, DialogComponent ],
   entryComponents: [DialogComponent],
@@ -28,7 +28,7 @@ import { DialogComponent } from '../app/pages/dialog/dialog.component';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    
+    MatDialogModule 
   ],
   providers: [],
   bootstrap: [AppComponent],
