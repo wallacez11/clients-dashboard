@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
-import {   MatTableModule, } from "@angular/material";
+import { MatTableModule, } from "@angular/material";
 import { ClientComponent } from './client.component';
 import { ClientService } from 'src/app/services/client.service';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -26,8 +26,8 @@ export const ClientRoutes: Routes = [
     MatInputModule,
     MatCardModule,
     MatDialogModule
-    
+
   ]
-  
+
 })
-export class ClientModule {}
+export class ClientModule { }

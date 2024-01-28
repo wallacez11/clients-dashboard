@@ -23,13 +23,13 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxFlex>
+      <div fxFlex  >
         <button
           type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
           (click)="drawer.toggle()"
-          
+          *ngIf="!drawer.opened"
         >
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>

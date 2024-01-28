@@ -29,4 +29,4 @@ import { RouterModule } from '@angular/router';
     MatListModule
   ]
 })
-export class NavbarModule {}
+export class NavbarModule { }

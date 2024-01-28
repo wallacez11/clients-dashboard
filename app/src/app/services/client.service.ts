@@ -7,20 +7,22 @@ import { Observable } from "rxjs";
 export class ClientService {
   private apiUrl = "http://localhost:3000";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    
+
     return this.http.get<any>(`${this.apiUrl}/clients`);
   }
 
-  getById() {}
+  getById(enterpriseId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/enterprises/${enterpriseId}`);
+  }
 
-  getByName() {}
+  getByName() { }
 
   getGeneralTotals(): Observable<any> {
-    
+
     return this.http.get<any>(`${this.apiUrl}/stats`);
   }
-  getTotalsByCompany() {}
+  getTotalsByCompany() { }
 }

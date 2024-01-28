@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ClientService } from "../../services/client.service";
-import {  MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from "../dialog/dialog.component";
 
@@ -32,8 +32,9 @@ export class ClientComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'imagem', 'empreendimentos'];
   totalClientes: number;
   totalEmpreendimentos: number;
+  totalUnidades: number;
 
-  constructor(private clientService: ClientService, public dialog: MatDialog) {}
+  constructor(private clientService: ClientService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadClients();
@@ -41,15 +42,18 @@ export class ClientComponent implements OnInit {
   }
 
   openDialog(row): void {
-    
-    const client = this.rawData.find(item => item._id === row.id && item.enterprises !==null);
-    console.log(client.enterprises)
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: client.enterprises
-    });
+    const clientId = row.id;
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    this.clientService.getById(clientId).subscribe((enterpriseData) => {
+
+      if (enterpriseData && enterpriseData.length > 0) {
+        const dialogRef = this.dialog.open(DialogComponent, {
+          data: enterpriseData
+        });
+
+      } else {
+        console.log('Nenhum dado de empresa encontrado para o ID:', clientId);
+      }
     });
   }
 
@@ -75,9 +79,9 @@ export class ClientComponent implements OnInit {
   loadTotals() {
     this.clientService.getGeneralTotals().subscribe(
       (total) => {
-        console.log(total)
         this.totalClientes = total.clientes;
         this.totalEmpreendimentos = total.empreendimentos;
+        this.totalUnidades = total.unidades;
       },
       (error) => {
         console.error('Erro ao obter totais:', error);
